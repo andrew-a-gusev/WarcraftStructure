@@ -1,21 +1,39 @@
 package com.sgu.warcraftgame;
 
-public abstract class HumansUnit {
-    int hp;
-    int mp;
-    int speed;
+public abstract class HumansUnit implements FightingAbility {
+    private int hp; //Hit Points
+    private int mp; //Magic Points :)
+    private int speed; //Speed )
 
-    abstract void attack(String nameEnemy);
+    public HumansUnit(int hp, int mp) {
+        this.hp = hp;
+        this.mp = mp;
+        this.speed = 15;
+    }
 
-    void move(int x,int y) {
+    public HumansUnit() {  //default
+        this.hp = 100;
+        this.mp = 50;
+        this.speed = 15;
+    }
+
+    void move(int x, int y, int speed) {
         System.out.println("move to (x,y)");
     }
 
-    void defend() {
-        System.out.println("defends");
+    public int getHp() {
+        return hp;
     }
 
-    abstract void useSpell(String nameSpell);
+    public int getMp() {
+        return mp;
+    }
 
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
 
+    public void setMp(int mp) {
+        this.mp = mp;
+    }
 }

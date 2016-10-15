@@ -1,18 +1,26 @@
 package com.sgu.warcraftgame;
 
 public abstract class HumanConstruction {
-    int hp;
-    int protectionPoints;
+    private int hp; //Hit Points
+    private int protectionPoints;
 
-    void unitCreate(int amount) {
-        System.out.println("unit create");
+    abstract void upgrade(String nameUp);
+
+    abstract HumansUnit createUnits(String nameUnit);
+
+    public int getHp() {
+        return hp;
     }
 
-    void upgradeConstruct(int lvl) {
-        System.out.println("upgrade successful");
+    public int getProtectionPoints() {
+        return protectionPoints;
     }
 
-    void useSpellDefend() {
-        System.out.println("protected structure");
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
+
+    public void setProtectionPoints(int protectionPoints) {
+        this.protectionPoints = protectionPoints;
     }
 }
