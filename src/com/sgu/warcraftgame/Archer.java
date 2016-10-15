@@ -2,16 +2,17 @@ package com.sgu.warcraftgame;
 
 public class Archer extends HumansUnit {
 
-    public Archer(int hp, int mp) {
-        super(hp, mp);
+    public Archer(String name, int hp, int mp, int damage) {
+        super(name, hp, mp, damage);
     }
 
     public Archer() {
     }
 
     @Override
-    public void attack() {
-        System.out.println("use bow");
+    public void attack(HumansUnit o) {
+        System.out.println("use bow for attack "+o.getClass().getSimpleName()+" "+o.getName());
+        System.out.println(o.getClass().getSimpleName()+" "+o.getName()+" received "+o.getDamage()+" damage");
     }
 
     @Override

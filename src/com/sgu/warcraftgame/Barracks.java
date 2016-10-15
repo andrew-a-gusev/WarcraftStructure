@@ -13,7 +13,7 @@ public class Barracks extends HumanConstruction {
 
     @Override
     void upgrade(String name) {
-        System.out.println("upgrade"+name);
+        System.out.println("upgrade "+name);
 
     }
 }
