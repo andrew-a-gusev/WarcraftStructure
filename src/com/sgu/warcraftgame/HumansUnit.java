@@ -5,7 +5,6 @@ public abstract class HumansUnit implements FightingAbility {
     private String name; //name(id) for different objects
     private int hp; //Hit Points
     private int mp; //Magic Points :)
-    private int speed; //Speed )
     private int damage;
 
     public HumansUnit(String name, int hp, int mp, int damage) {
@@ -15,11 +14,9 @@ public abstract class HumansUnit implements FightingAbility {
         this.damage = damage;
     }
 
-
     public HumansUnit() {  //default
         this.hp = 100;
         this.mp = 50;
-        this.speed = 15;
     }
 
     void move(int x, int y, int speed) {
@@ -60,4 +57,6 @@ public abstract class HumansUnit implements FightingAbility {
     public void setDamage(int damage) {
         this.damage = damage;
     }
+
+
 }

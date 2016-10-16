@@ -2,9 +2,11 @@ package com.sgu.warcraftgame;
 
 public class Footman extends HumansUnit {
 
+    private int armor;
 
-    public Footman(String name, int hp, int mp, int damage) {
+    public Footman(String name, int hp, int mp, int damage, int armor) {
         super(name, hp, mp, damage);
+        this.armor=armor;
     }
 
     public Footman() {
@@ -12,13 +14,14 @@ public class Footman extends HumansUnit {
 
     @Override
     public void attack(HumansUnit o) {
-        System.out.println("use sword for attack " + o.getClass().getSimpleName() + " " + o.getName());
-        System.out.println(o.getClass().getSimpleName() + " " + o.getName() + " received " + o.getDamage() + " damage");
+        System.out.println(this.getName()+" use sword for attack " + o.getClass().getSimpleName() + " " + o.getName());
+        System.out.println(o.getClass().getSimpleName() + " " + o.getName() + " received " + this.getDamage() + " damage");
     }
 
     @Override
-    public void defent() {
-        System.out.println("use shield");
+    public void defend() {
+        System.out.println("("+this.getName()+" uses a shield)");
+        this.setHp(this.getArmor()+this.getHp());
     }
 
     @Override
@@ -27,6 +30,11 @@ public class Footman extends HumansUnit {
 
     }
 
+    public int getArmor() {
+        return armor;
+    }
 
-
+    public void setArmor(int armor) {
+        this.armor = armor;
+    }
 }
