@@ -1,14 +1,16 @@
 package com.sgu.warcraftgame;
 
+import com.sgu.warcraftgame.MyException.UnitNotFoundException;
+
 public class TestWarcraft {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, UnitNotFoundException {
 
         HumansUnit footman = new Footman("Solder", 1000, 10, 50,15);//  simple creation
         HumansUnit archer = new Archer("Ranger", 500, 50, 35,25);
 
         HumanConstruction humanConstruction = new Barracks();
         //HumansUnit footman1 = humanConstruction.createUnits("footman"); //creation using barracks
-        // HumansUnit archer1 = humanConstruction.createUnits("archer"); //creation using barracks
+       // HumansUnit archer1 = humanConstruction.createUnits("archer"); //creation using barracks
 
 
         //humanConstruction.upgrade("Swords");

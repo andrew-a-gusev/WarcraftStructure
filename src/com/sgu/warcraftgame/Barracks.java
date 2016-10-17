@@ -1,14 +1,16 @@
 package com.sgu.warcraftgame;
 
+import com.sgu.warcraftgame.MyException.UnitNotFoundException;
+
 public class Barracks extends HumanConstruction {
 
     @Override
-    HumansUnit createUnits(String nameUnit) {
+    HumansUnit createUnits(String nameUnit) throws UnitNotFoundException {
         if (nameUnit.equals("footman"))
         return new Footman(); else
         if (nameUnit.equals("archer"))
             return new Archer();
-        else throw new  RuntimeException("the unit can not be found");
+        else throw new UnitNotFoundException();
     }
 
     @Override

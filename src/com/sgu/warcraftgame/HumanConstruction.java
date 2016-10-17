@@ -1,12 +1,14 @@
 package com.sgu.warcraftgame;
 
+import com.sgu.warcraftgame.MyException.UnitNotFoundException;
+
 public abstract class HumanConstruction {
     private int hp; //Hit Points
     private int protectionPoints;
 
     abstract void upgrade(String nameUp);
 
-    abstract HumansUnit createUnits(String nameUnit);
+    abstract HumansUnit createUnits(String nameUnit) throws UnitNotFoundException;
 
     public int getHp() {
         return hp;
