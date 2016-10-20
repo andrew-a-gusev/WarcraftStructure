@@ -1,8 +1,11 @@
 package com.sgu.warcraftgame;
 
+import com.sgu.warcraftgame.myattack.Attack;
+
 public interface FightingAbility {
 
-    void attack(HumansUnit o);
+    void attackUnit(Unit o);
+    void suffer(Attack attack);
     void defend();
     void useSpells();
 }

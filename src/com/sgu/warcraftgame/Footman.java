@@ -1,6 +1,9 @@
 package com.sgu.warcraftgame;
 
-public class Footman extends HumansUnit {
+import com.sgu.warcraftgame.myattack.Attack;
+import com.sgu.warcraftgame.myattack.RangeAttack;
+
+public class Footman extends Unit implements FightingAbility {
 
     private int armor;
 
@@ -13,9 +16,13 @@ public class Footman extends HumansUnit {
     }
 
     @Override
-    public void attack(HumansUnit o) {
-        System.out.println(this.getName()+" use sword for attack " + o.getClass().getSimpleName() + " " + o.getName());
-        System.out.println(o.getClass().getSimpleName() + " " + o.getName() + " received " + this.getDamage() + " damage");
+    public void attackUnit(Unit o) {
+        o.suffer(new RangeAttack(this,o));
+    }
+
+    @Override
+    public void suffer(Attack attack) {
+       this.setHp(attack.apply());
     }
 
     @Override

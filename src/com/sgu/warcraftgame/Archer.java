@@ -1,6 +1,9 @@
 package com.sgu.warcraftgame;
 
-public class Archer extends HumansUnit {
+import com.sgu.warcraftgame.myattack.Attack;
+import com.sgu.warcraftgame.myattack.RangeAttack;
+
+public class Archer extends Unit  implements FightingAbility{
 
     private int accuracy;
 
@@ -13,9 +16,13 @@ public class Archer extends HumansUnit {
     }
 
     @Override
-    public void attack(HumansUnit o) {
-        System.out.println(this.getName() + " use bow for attack " + o.getClass().getSimpleName() + " " + o.getName());
-        System.out.println(o.getClass().getSimpleName() + " " + o.getName() + " received " + this.getDamage() + " damage");
+    public void attackUnit(Unit o) {
+         o.suffer(new RangeAttack(this,o));
+    }
+
+    @Override
+    public void suffer(Attack attack) {
+        this.setHp(attack.apply());
     }
 
     @Override

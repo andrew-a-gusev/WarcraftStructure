@@ -1,14 +1,14 @@
 package com.sgu.warcraftgame;
 
-import com.sgu.warcraftgame.MyException.UnitNotFoundException;
+import com.sgu.warcraftgame.myexception.UnitNotFoundException;
 
 public class TestWarcraft {
     public static void main(String[] args) throws InterruptedException, UnitNotFoundException {
 
-        HumansUnit footman = new Footman("Solder", 1000, 10, 50,15);//  simple creation
-        HumansUnit archer = new Archer("Ranger", 500, 50, 35,25);
+         Footman footman = new Footman("Solder", 1000, 10, 50,15);//  simple creation
+         Archer archer = new Archer("Ranger", 500, 50, 35,25);
 
-        HumanConstruction humanConstruction = new Barracks();
+         Construction barracks = new Barracks();
         //HumansUnit footman1 = humanConstruction.createUnits("footman"); //creation using barracks
        // HumansUnit archer1 = humanConstruction.createUnits("archer"); //creation using barracks
 
@@ -22,12 +22,8 @@ public class TestWarcraft {
 
         while (footman.getHp() > 0 && archer.getHp() > 0) {
             System.out.println("Step----------------> " + (i++));
-            footman.attack(archer);
-            footman.defend(); //use defend
-            archer.setHp(archer.getHp() - footman.getDamage());
-            archer.useSpells();   //use spell
-            archer.attack(footman);
-            footman.setHp(footman.getHp() - archer.getDamage());
+            footman.attackUnit(archer);
+            archer.attackUnit(footman);
 
             System.out.println("archer has " + archer.getHp() + " hp");
             System.out.println("footman has " + footman.getHp() + " hp");

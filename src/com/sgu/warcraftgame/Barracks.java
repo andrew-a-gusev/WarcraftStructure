@@ -1,11 +1,12 @@
 package com.sgu.warcraftgame;
 
-import com.sgu.warcraftgame.MyException.UnitNotFoundException;
+import com.sgu.warcraftgame.myattack.Attack;
+import com.sgu.warcraftgame.myexception.UnitNotFoundException;
 
-public class Barracks extends HumanConstruction {
+public class Barracks extends Construction {
 
     @Override
-    HumansUnit createUnits(String nameUnit) throws UnitNotFoundException {
+     Unit createUnits(String nameUnit) throws UnitNotFoundException {
         if (nameUnit.equals("footman"))
         return new Footman(); else
         if (nameUnit.equals("archer"))
@@ -16,6 +17,11 @@ public class Barracks extends HumanConstruction {
     @Override
     void upgrade(String name) {
         System.out.println("upgrade "+name);
+
+    }
+
+    @Override
+    public void suffer(Attack attack) {
 
     }
 }
