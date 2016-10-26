@@ -6,6 +6,5 @@ public interface FightingAbility {
 
     void attackUnit(Unit o);
     void suffer(Attack attack);
-    void defend();
-    void useSpells();
+
 }

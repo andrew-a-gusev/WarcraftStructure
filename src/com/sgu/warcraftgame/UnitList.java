@@ -7,12 +7,12 @@ import com.sgu.warcraftgame.myattack.RangeAttack;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class UnitList<Unit> extends ArrayList<Unit> implements FightingAbility {
+public class UnitList<T> extends ArrayList<T> implements FightingAbility ,Movable{
 
     public long getAllHp() {
         long hp = 0;
-        for (Unit p : this) {
-            com.sgu.warcraftgame.Unit unit = (com.sgu.warcraftgame.Unit) p;
+        for (T p : this) {
+            Unit unit = (Unit) p;
             hp += unit.getHp();
         }
         return hp;
@@ -20,13 +20,13 @@ public class UnitList<Unit> extends ArrayList<Unit> implements FightingAbility {
     }
 
     @Override
-    public void attackUnit(com.sgu.warcraftgame.Unit o) {
+    public void attackUnit(Unit o) {
 
         for (int i = 0; i < this.size(); i++) {
             if (this.get(i) instanceof Footman)
-                o.suffer(new MeleeAttack((com.sgu.warcraftgame.Unit) this.get(i), o));
+                o.suffer(new MeleeAttack((Unit) this.get(i), o));
             if (this.get(i) instanceof Archer)
-                o.suffer(new RangeAttack((com.sgu.warcraftgame.Unit) this.get(i), o));
+                o.suffer(new RangeAttack((Unit) this.get(i), o));
         }
 
     }
@@ -37,21 +37,21 @@ public class UnitList<Unit> extends ArrayList<Unit> implements FightingAbility {
 
         if (!this.isEmpty() && !units.isEmpty()) {
             Random random = new Random();
-            com.sgu.warcraftgame.Unit attacking;
-            com.sgu.warcraftgame.Unit attacked;
-            if (this.size() == 1) attacking = (com.sgu.warcraftgame.Unit) this.get(0);
+            Unit attacking;
+            Unit attacked;
+            if (this.size() == 1) attacking = (Unit) this.get(0);
             else
-                attacking = (com.sgu.warcraftgame.Unit) this.get(random.nextInt(this.size() - 1));
+                attacking = (Unit) this.get(random.nextInt(this.size() - 1));
             if (attacking instanceof Footman) {
-                if (units.size() == 1) attacked = (com.sgu.warcraftgame.Unit) units.get(0);
+                if (units.size() == 1) attacked = (Unit) units.get(0);
                 else
-                    attacked = (com.sgu.warcraftgame.Unit) units.get(random.nextInt(units.size() - 1));
+                    attacked = (Unit) units.get(random.nextInt(units.size() - 1));
                 attacked.suffer(new MeleeAttack(attacking, attacked));
             }
             if (attacking instanceof Archer) {
-                if (units.size() == 1) attacked = (com.sgu.warcraftgame.Unit) units.get(0);
+                if (units.size() == 1) attacked = (Unit) units.get(0);
                 else
-                    attacked = (com.sgu.warcraftgame.Unit) units.get(random.nextInt(units.size() - 1));
+                    attacked = (Unit) units.get(random.nextInt(units.size() - 1));
                 attacked.suffer(new RangeAttack(attacking, attacked));
             }
 
@@ -59,19 +59,19 @@ public class UnitList<Unit> extends ArrayList<Unit> implements FightingAbility {
 //        for (int i = 0; i < this.size(); i++) {
 //            for (int j = 0; j < units.size(); j++) {
 //                if (this.get(i) instanceof Footman) {
-//                    com.sgu.warcraftgame.Unit attacked = (com.sgu.warcraftgame.Unit) units.get(i);
-//                    attacked.suffer(new MeleeAttack((com.sgu.warcraftgame.Unit) this.get(j), attacked));
+//                    Unit attacked = (Unit) units.get(i);
+//                    attacked.suffer(new MeleeAttack((Unit) this.get(j), attacked));
 //                }
 //                if (this.get(i) instanceof Archer) {
-//                    com.sgu.warcraftgame.Unit attacked = (com.sgu.warcraftgame.Unit) units.get(i);
-//                    attacked.suffer(new RangeAttack((com.sgu.warcraftgame.Unit) this.get(j), attacked));
+//                    Unit attacked = (Unit) units.get(i);
+//                    attacked.suffer(new RangeAttack((Unit) this.get(j), attacked));
 //                }
 //            }
 //
 //        }
 
             for (int i = 0; i < units.size(); ) {
-                attacked = (com.sgu.warcraftgame.Unit) units.get(i);
+                attacked = (Unit) units.get(i);
                 if (attacked.getHp() <= 0)
                     units.remove(i);
                 else i++;
@@ -79,19 +79,16 @@ public class UnitList<Unit> extends ArrayList<Unit> implements FightingAbility {
         }
     }
 
+    @Override
+    public void move(int x, int y) {
+
+    }
 
     @Override
     public void suffer(Attack attack) {
 
     }
 
-    @Override
-    public void defend() {
 
-    }
 
-    @Override
-    public void useSpells() {
-
-    }
 }
