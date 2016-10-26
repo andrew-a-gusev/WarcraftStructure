@@ -7,7 +7,7 @@ import com.sgu.warcraftgame.myattack.RangeAttack;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class UnitList<T> extends ArrayList<T> implements FightingAbility ,Movable{
+public class UnitList<T> extends ArrayList<T> implements FightingAbility, Movable {
 
     public long getAllHp() {
         long hp = 0;
@@ -19,8 +19,9 @@ public class UnitList<T> extends ArrayList<T> implements FightingAbility ,Movabl
 
     }
 
+
     @Override
-    public void attackUnit(Unit o) {
+    public synchronized void attackUnit(Unit o) {
 
         for (int i = 0; i < this.size(); i++) {
             if (this.get(i) instanceof Footman)
@@ -31,7 +32,7 @@ public class UnitList<T> extends ArrayList<T> implements FightingAbility ,Movabl
 
     }
 
-    public void attackAll(UnitList units) {
+    public void attackAll(ArrayList<? extends T> units) {
 
 //logic game #1  any attack of any
 
@@ -88,7 +89,6 @@ public class UnitList<T> extends ArrayList<T> implements FightingAbility ,Movabl
     public void suffer(Attack attack) {
 
     }
-
 
 
 }

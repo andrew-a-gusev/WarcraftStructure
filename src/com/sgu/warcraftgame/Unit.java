@@ -5,7 +5,7 @@ import com.sgu.warcraftgame.myattack.Attack;
 
 public abstract class Unit implements FightingAbility, Movable {
     private String name; //name(id) for different objects
-    private int hp; //Hit Points
+    private  int hp; //Hit Points
     private int mp; //Magic Points :)
     private int damage;
     private int x = 0;
