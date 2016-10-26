@@ -21,7 +21,22 @@ public class Barracks extends Construction {
     }
 
     @Override
+    public void attackUnit(Unit o) {
+
+    }
+
+    @Override
     public void suffer(Attack attack) {
+
+    }
+
+    @Override
+    public void defend() {
+
+    }
+
+    @Override
+    public void useSpells() {
 
     }
 }

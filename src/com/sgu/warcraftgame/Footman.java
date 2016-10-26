@@ -1,9 +1,9 @@
 package com.sgu.warcraftgame;
 
 import com.sgu.warcraftgame.myattack.Attack;
-import com.sgu.warcraftgame.myattack.RangeAttack;
+import com.sgu.warcraftgame.myattack.MeleeAttack;
 
-public class Footman extends Unit implements FightingAbility {
+public class Footman extends Unit {
 
     private int armor;
 
@@ -17,7 +17,7 @@ public class Footman extends Unit implements FightingAbility {
 
     @Override
     public void attackUnit(Unit o) {
-        o.suffer(new RangeAttack(this,o));
+        o.suffer(new MeleeAttack(this,o));
     }
 
     @Override

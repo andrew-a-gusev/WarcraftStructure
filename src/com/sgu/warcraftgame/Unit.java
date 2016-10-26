@@ -3,7 +3,7 @@ package com.sgu.warcraftgame;
 
 import com.sgu.warcraftgame.myattack.Attack;
 
-public abstract class Unit  {
+public abstract class Unit implements FightingAbility {
     private String name; //name(id) for different objects
     private int hp; //Hit Points
     private int mp; //Magic Points :)
@@ -29,6 +29,7 @@ public abstract class Unit  {
     }*/
 
     public abstract void suffer(Attack attack);
+
     public String getName() {
         return name;
     }

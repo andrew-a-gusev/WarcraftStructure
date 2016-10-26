@@ -3,7 +3,7 @@ package com.sgu.warcraftgame;
 import com.sgu.warcraftgame.myattack.Attack;
 import com.sgu.warcraftgame.myattack.RangeAttack;
 
-public class Archer extends Unit  implements FightingAbility{
+public class Archer extends Unit   {
 
     private int accuracy;
 
