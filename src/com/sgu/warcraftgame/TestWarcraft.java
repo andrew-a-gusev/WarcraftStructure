@@ -24,37 +24,22 @@ public class TestWarcraft {
         }
         // example move
         footman.move(5, 10);
+
+
+
+        //example fight no thread
         System.out.println("----------------------------------");
-        // use thread for attack
-        Thread thread1 = new AttackThread(unitsFootman, unitsArcher);
-        Thread thread2 = new AttackThread(unitsArcher, unitsFootman);
-        thread1.start();
-        thread2.start();
-        Thread.sleep(500);
-        if (unitsFootman.getAllHp() == 0 || unitsArcher.getAllHp() == 0) {
-            thread1.interrupt();
-            thread2.interrupt();
+        while (unitsArcher.getAllHp() > 0 && unitsFootman.getAllHp() > 0) {
+            unitsFootman.attackAll(unitsArcher);
+            unitsArcher.attackAll(unitsFootman);
+            System.out.println("unitsArcher has " + unitsArcher.getAllHp() + " hp");
+            System.out.println("unitsFootman has " + unitsFootman.getAllHp() + " hp");
         }
 
         System.out.println();
         if (unitsArcher.getAllHp() <= 0) System.out.println("Footmans win!");
         else if (unitsFootman.getAllHp() <= 0)
             System.out.println("Archers win!");
-
-
-//        //example fight no thread
-//        System.out.println("----------------------------------");
-//        while (unitsArcher.getAllHp() > 0 && unitsFootman.getAllHp() > 0) {
-//            unitsFootman.attackAll(unitsArcher);
-//            unitsArcher.attackAll(unitsFootman);
-//            System.out.println("unitsArcher has " + unitsArcher.getAllHp() + " hp");
-//            System.out.println("unitsFootman has " + unitsFootman.getAllHp() + " hp");
-//        }
-//
-//        System.out.println();
-//        if (unitsArcher.getAllHp() <= 0) System.out.println("Footmans win!");
-//        else if (unitsFootman.getAllHp() <= 0)
-//            System.out.println("Archers win!");
 
 
     }
