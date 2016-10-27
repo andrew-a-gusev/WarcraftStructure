@@ -22,12 +22,12 @@ public class TestWarcraft {
         for (int i = 0; i < 10; i++) {
             unitsArcher.add(new Archer("Ranger " + i, random.nextInt(1000) + 500, 10, 100));
         }
-        // example move
-        footman.move(5, 10);
+
+        // move for party units(that's list units)
+        unitsArcher.move(5,5);
 
 
-
-        //example fight  
+        //example fight for party units(that's list units)
         System.out.println("----------------------------------");
         while (unitsArcher.getAllHp() > 0 && unitsFootman.getAllHp() > 0) {
             unitsFootman.attackAll(unitsArcher);

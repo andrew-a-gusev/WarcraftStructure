@@ -28,6 +28,7 @@ public class UnitList<T> extends ArrayList<T> implements FightingAbility, Movabl
                 o.suffer(new MeleeAttack((Unit) this.get(i), o));
             if (this.get(i) instanceof Archer)
                 o.suffer(new RangeAttack((Unit) this.get(i), o));
+            if (o.getHp() <= 0) break;
         }
 
     }
@@ -82,7 +83,32 @@ public class UnitList<T> extends ArrayList<T> implements FightingAbility, Movabl
 
     @Override
     public void move(int x, int y) {
+        UnitList<Unit> unit=(UnitList<Unit>)this;
+        for (int i = 0; i < unit.size(); i++) {
+            if (x >  unit.get(i).getX())
+                for (int k = unit.get(i).getX(); k <= x; k++) {
+                    unit.get(i).setX(k);
+                    System.out.println(unit.get(i).getName() + " go to(" + k + "," + unit.get(i).getY() + ")");
+                }
+            else if (x < unit.get(i).getX())
+                for (int k = unit.get(i).getX(); k >= x; k--) {
+                    unit.get(i).setX(k);
+                    System.out.println(unit.get(i).getName() + " go to(" + k + "," + unit.get(i).getY() + ")");
 
+                }
+
+
+            if (y > unit.get(i).getY())
+                for (int k = unit.get(i).getY(); k <= y; k++) {
+                    unit.get(i).setY(k);
+                    System.out.println(unit.get(i).getName() + " go to(" + unit.get(i).getX() + "," + k + ")");
+                }
+            else if (y < unit.get(i).getY())
+                for (int k = unit.get(i).getY(); k >= y; k--) {
+                    unit.get(i).setY(k);
+                    System.out.println(unit.get(i).getName() + " go to(" + unit.get(i).getX() + "," + k + ")");
+                }
+        }
     }
 
     @Override
