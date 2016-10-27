@@ -27,7 +27,7 @@ public class TestWarcraft {
 
 
 
-        //example fight no thread
+        //example fight  
         System.out.println("----------------------------------");
         while (unitsArcher.getAllHp() > 0 && unitsFootman.getAllHp() > 0) {
             unitsFootman.attackAll(unitsArcher);
