@@ -21,7 +21,7 @@ public class UnitList<T> extends ArrayList<T> implements FightingAbility, Movabl
 
 
     @Override
-    public synchronized void attackUnit(Unit o) {
+    public  void attackUnit(Unit o) {
 
         for (int i = 0; i < this.size(); i++) {
             if (this.get(i) instanceof Footman)
@@ -57,7 +57,7 @@ public class UnitList<T> extends ArrayList<T> implements FightingAbility, Movabl
                 attacked.suffer(new RangeAttack(attacking, attacked));
             }
 
-//logic game #2
+//logic game #2  all attack of one
 //        for (int i = 0; i < this.size(); i++) {
 //            for (int j = 0; j < units.size(); j++) {
 //                if (this.get(i) instanceof Footman) {
