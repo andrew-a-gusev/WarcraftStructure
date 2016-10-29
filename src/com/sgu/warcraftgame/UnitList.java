@@ -38,8 +38,9 @@ public class UnitList<T extends Unit> extends ArrayList<T> implements FightingAb
 
         for (Unit unit : this) {
             o.suffer(getTypeAttack(unit, o));
-            if (o.getHp() <= 0)
+            if (o.getHp() <= 0) {
                 break;
+            }
         }
 
     }
@@ -80,29 +81,31 @@ public class UnitList<T extends Unit> extends ArrayList<T> implements FightingAb
     public void move(int x, int y) {
 
         for (int i = 0; i < this.size(); i++) {
-            if (x > this.get(i).getX())
+            if (x > this.get(i).getX()) {
                 for (int k = this.get(i).getX(); k <= x; k++) {
                     this.get(i).setX(k);
                     System.out.println(this.get(i).getName() + " go to(" + k + "," + this.get(i).getY() + ")");
                 }
-            else if (x < this.get(i).getX())
+            } else if (x < this.get(i).getX()) {
                 for (int k = this.get(i).getX(); k >= x; k--) {
                     this.get(i).setX(k);
                     System.out.println(this.get(i).getName() + " go to(" + k + "," + this.get(i).getY() + ")");
 
                 }
+            }
 
 
-            if (y > this.get(i).getY())
+            if (y > this.get(i).getY()) {
                 for (int k = this.get(i).getY(); k <= y; k++) {
                     this.get(i).setY(k);
                     System.out.println(this.get(i).getName() + " go to(" + this.get(i).getX() + "," + k + ")");
                 }
-            else if (y < this.get(i).getY())
+            } else if (y < this.get(i).getY()) {
                 for (int k = this.get(i).getY(); k >= y; k--) {
                     this.get(i).setY(k);
                     System.out.println(this.get(i).getName() + " go to(" + this.get(i).getX() + "," + k + ")");
                 }
+            }
         }
     }
 

@@ -1,7 +1,5 @@
 package com.sgu.warcraftgame.building;
 
-import com.sgu.warcraftgame.Archer;
-import com.sgu.warcraftgame.Footman;
 import com.sgu.warcraftgame.Unit;
 import com.sgu.warcraftgame.myattack.Attack;
 import com.sgu.warcraftgame.myexception.UnitsNotFoundException;
@@ -10,12 +8,8 @@ import com.sgu.warcraftgame.myexception.UnitsNotFoundException;
 public class Barracks extends Construction {
 
     @Override
-    Unit createUnits(String nameUnit) throws UnitsNotFoundException {
-        if (nameUnit.equals("footman"))
-            return new Footman();
-        else if (nameUnit.equals("archer"))
-            return new Archer();
-        else throw new UnitsNotFoundException("Unit Not Found");
+    public Unit createUnits(String nameUnit) throws UnitsNotFoundException {
+        return new FactoryUnit(nameUnit).getUnit();
     }
 
     @Override

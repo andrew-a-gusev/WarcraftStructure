@@ -37,11 +37,10 @@ public class TestWarcraft {
         System.out.println();
         if (unitsArcher.getAllHp() <= 0) {
             System.out.println("Footmans win!");
-        } else {
-            if (unitsFootman.getAllHp() <= 0) {
-                System.out.println("Archers win!");
-            }
+        } else if (unitsFootman.getAllHp() <= 0) {
+            System.out.println("Archers win!");
         }
+         
 
     }
 

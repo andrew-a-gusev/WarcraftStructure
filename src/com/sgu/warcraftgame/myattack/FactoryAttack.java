@@ -20,11 +20,9 @@ public class FactoryAttack {
     public TypeAttackable getAttack() throws UnitsNotFoundException {
         if (unit instanceof Footman) {
             return new MeleeType();
-        } else
-        if (unit instanceof Archer) {
+        } else if (unit instanceof Archer) {
             return new RangeType();
-        } else
-          throw new UnitsNotFoundException("Unit Not Found Exception");
+        } else throw new UnitsNotFoundException("Unit Not Found Exception");
 
     }
 }

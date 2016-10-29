@@ -5,7 +5,7 @@ import com.sgu.warcraftgame.myattack.Attack;
 
 public abstract class Unit implements FightingAbility, Movable {
     private String name; //name(id) for different objects
-    private  int hp; //Hit Points
+    private int hp; //Hit Points
     private int mp; //Magic Points :)
     private int damage;
     private int x = 0;
@@ -30,29 +30,31 @@ public abstract class Unit implements FightingAbility, Movable {
     @Override
     public void move(int x, int y) {
 
-        if (x > this.getX())
-            for (int i = this.getX(); i <=x; i++) {
+        if (x > this.getX()) {
+            for (int i = this.getX(); i <= x; i++) {
                 this.setX(i);
                 System.out.println(this.getName() + " go to(" + i + "," + this.getY() + ")");
             }
-        else if (x < this.getX())
+        } else if (x < this.getX()) {
             for (int i = this.getX(); i >= x; i--) {
                 this.setX(i);
                 System.out.println(this.getName() + " go to(" + i + "," + this.getY() + ")");
 
             }
+        }
 
 
-        if (y > this.getY())
+        if (y > this.getY()) {
             for (int i = this.getY(); i <= y; i++) {
                 this.setY(i);
                 System.out.println(this.getName() + " go to(" + this.getX() + "," + i + ")");
             }
-        else if (y < this.getY())
+        } else if (y < this.getY()) {
             for (int i = this.getY(); i >= y; i--) {
                 this.setY(i);
                 System.out.println(this.getName() + " go to(" + this.getX() + "," + i + ")");
             }
+        }
     }
 
     public abstract void suffer(Attack attack);
