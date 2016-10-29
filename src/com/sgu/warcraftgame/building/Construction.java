@@ -1,7 +1,7 @@
 package com.sgu.warcraftgame.building;
 
 import com.sgu.warcraftgame.Unit;
-import com.sgu.warcraftgame.MyException.UnitsNotFoundException;
+import com.sgu.warcraftgame.myexception.UnitsNotFoundException;
 
 
 public abstract class Construction extends Unit {

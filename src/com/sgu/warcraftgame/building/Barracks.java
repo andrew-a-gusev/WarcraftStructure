@@ -4,7 +4,7 @@ import com.sgu.warcraftgame.Archer;
 import com.sgu.warcraftgame.Footman;
 import com.sgu.warcraftgame.Unit;
 import com.sgu.warcraftgame.myattack.Attack;
-import com.sgu.warcraftgame.MyException.UnitsNotFoundException;
+import com.sgu.warcraftgame.myexception.UnitsNotFoundException;
 
 
 public class Barracks extends Construction {

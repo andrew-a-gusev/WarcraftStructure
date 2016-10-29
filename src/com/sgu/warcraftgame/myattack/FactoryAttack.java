@@ -6,7 +6,7 @@ import com.sgu.warcraftgame.Unit;
 import com.sgu.warcraftgame.myattack.typeattack.RangeType;
 import com.sgu.warcraftgame.myattack.typeattack.TypeAttackable;
 import com.sgu.warcraftgame.myattack.typeattack.MeleeType;
-import com.sgu.warcraftgame.MyException.UnitsNotFoundException;
+import com.sgu.warcraftgame.myexception.UnitsNotFoundException;
 
 
 public class FactoryAttack {
