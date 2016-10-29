@@ -3,7 +3,7 @@ package com.sgu.warcraftgame;
 import com.sgu.warcraftgame.myattack.Attack;
 import com.sgu.warcraftgame.myattack.FactoryAttack;
 import com.sgu.warcraftgame.myattack.typeattack.TypeAttackable;
-import com.sgu.warcraftgame.myexception.UnitsNotFoundException;
+import com.sgu.warcraftgame.MyException.UnitsNotFoundException;
 
 import java.util.ArrayList;
 import java.util.Iterator;

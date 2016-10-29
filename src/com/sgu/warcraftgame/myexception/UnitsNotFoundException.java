@@ -1,4 +1,4 @@
-package com.sgu.warcraftgame.myexception;
+package com.sgu.warcraftgame.MyException;
 
 public class UnitsNotFoundException extends Exception {
 
