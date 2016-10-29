@@ -2,7 +2,8 @@ package com.sgu.warcraftgame;
 
 import com.sgu.warcraftgame.myattack.Attack;
 import com.sgu.warcraftgame.myattack.FactoryAttack;
-import com.sgu.warcraftgame.myattack.typeattack.Attackable;
+import com.sgu.warcraftgame.myattack.typeattack.TypeAttackable;
+import com.sgu.warcraftgame.myexception.UnitsNotFoundException;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -23,16 +24,20 @@ public class UnitList<T extends Unit> extends ArrayList<T> implements FightingAb
     private Attack getTypeAttack(Unit unit1, Unit unit2) {
 
 
-        Attackable attackable = new FactoryAttack(unit1).getAttack();
-        return attackable.getAttack(unit1,unit2);
+        TypeAttackable attackable = null;
+        try {
+            attackable = new FactoryAttack(unit1).getAttack();
+        } catch (UnitsNotFoundException e) {
+            e.printStackTrace();
+        }
+        return attackable.getAttack(unit1, unit2);
     }
 
     @Override
-    public  void attackUnit(Unit o) {
+    public void attackUnit(Unit o) {
 
-     //   for (int i = 0; i < this.size(); i++) {
-            for (Unit unit: this) {
-                o.suffer(getTypeAttack(unit, o));
+        for (Unit unit : this) {
+            o.suffer(getTypeAttack(unit, o));
             if (o.getHp() <= 0)
                 break;
         }
@@ -41,35 +46,32 @@ public class UnitList<T extends Unit> extends ArrayList<T> implements FightingAb
 
     public void attackAll(ArrayList<? extends T> units) {
 
-//logic game #1  any attack of any
+//logic game any attack of any
 
         if (!this.isEmpty() && !units.isEmpty()) {
             Random random = new Random();
             Unit attacking;
             Unit attacked;
             if (this.size() == 1) {
-                attacking =  this.get(0);
-            }
-            else {
-                attacking =  this.get(random.nextInt(this.size() - 1));
+                attacking = this.get(0);
+            } else {
+                attacking = this.get(random.nextInt(this.size() - 1));
             }
 
-                if (units.size() == 1) {
-                    attacked =  units.get(0);
-                }
-                else {
+            if (units.size() == 1) {
+                attacked = units.get(0);
+            } else {
                 attacked = units.get(random.nextInt(units.size() - 1));
-                }
+            }
 
-                attacked.suffer(getTypeAttack(attacking, attacked));
+            attacked.suffer(getTypeAttack(attacking, attacked));
 
 
-
-            Iterator<? extends T> iterator=units.iterator();
+            Iterator<? extends T> iterator = units.iterator();
             while (iterator.hasNext()) {
-               if (iterator.next().getHp()<= 0) {
-                   iterator.remove();
-               }
+                if (iterator.next().getHp() <= 0) {
+                    iterator.remove();
+                }
             }
         }
     }
@@ -78,7 +80,7 @@ public class UnitList<T extends Unit> extends ArrayList<T> implements FightingAb
     public void move(int x, int y) {
 
         for (int i = 0; i < this.size(); i++) {
-            if (x >  this.get(i).getX())
+            if (x > this.get(i).getX())
                 for (int k = this.get(i).getX(); k <= x; k++) {
                     this.get(i).setX(k);
                     System.out.println(this.get(i).getName() + " go to(" + k + "," + this.get(i).getY() + ")");

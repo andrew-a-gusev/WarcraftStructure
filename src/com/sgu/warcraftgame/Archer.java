@@ -6,7 +6,6 @@ import com.sgu.warcraftgame.myattack.RangeAttack;
 public class Archer extends Unit {
 
 
-
     public Archer(String name, int hp, int mp, int damage) {
         super(name, hp, mp, damage);
     }

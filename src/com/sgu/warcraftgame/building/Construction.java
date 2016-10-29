@@ -1,7 +1,7 @@
 package com.sgu.warcraftgame.building;
 
 import com.sgu.warcraftgame.Unit;
-import com.sgu.warcraftgame.myexception.UnitNotFoundException;
+import com.sgu.warcraftgame.myexception.UnitsNotFoundException;
 
 
 public abstract class Construction extends Unit {
@@ -10,7 +10,7 @@ public abstract class Construction extends Unit {
 
     abstract void upgrade(String nameUp);
 
-    abstract  Unit createUnits(String nameUnit) throws UnitNotFoundException;
+    abstract Unit createUnits(String nameUnit) throws UnitsNotFoundException;
 
     public int getHp() {
         return hp;

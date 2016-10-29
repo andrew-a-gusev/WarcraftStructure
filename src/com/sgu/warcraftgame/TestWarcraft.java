@@ -22,7 +22,7 @@ public class TestWarcraft {
         }
 
         // move for party units(that's list units)
-        unitsArcher.move(5,5);
+        unitsArcher.move(5, 5);
 
 
         //example fight for party units(that's list units)
@@ -35,11 +35,13 @@ public class TestWarcraft {
         }
 
         System.out.println();
-        if (unitsArcher.getAllHp() <= 0) System.out.println("Footmans win!");
-        else if (unitsFootman.getAllHp() <= 0)
-            System.out.println("Archers win!");
-
-
+        if (unitsArcher.getAllHp() <= 0) {
+            System.out.println("Footmans win!");
+        } else {
+            if (unitsFootman.getAllHp() <= 0) {
+                System.out.println("Archers win!");
+            }
+        }
 
     }
 

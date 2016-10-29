@@ -10,7 +10,7 @@ public class RangeAttack extends Attack {
 
     @Override
     public int apply() {
-        System.out.println(attacking.getName()+" use Range attack on " + attacked.getClass().getSimpleName() + " " + attacked.getName());
+        System.out.println(attacking.getName()+" use RangeType attack on " + attacked.getClass().getSimpleName() + " " + attacked.getName());
         return attacked.getHp()-attacking.getDamage();
     }
 }

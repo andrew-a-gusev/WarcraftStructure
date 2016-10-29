@@ -10,7 +10,7 @@ public class MeleeAttack extends Attack {
 
     @Override
     public int apply() {
-        System.out.println(attacking.getName() + " use Melee attack on " + attacked.getClass().getSimpleName() + " " + attacked.getName());
+        System.out.println(attacking.getName() + " use MeleeType attack on " + attacked.getClass().getSimpleName() + " " + attacked.getName());
         return attacked.getHp() - attacking.getDamage();
     }
 }
