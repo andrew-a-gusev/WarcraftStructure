@@ -6,6 +6,7 @@ import com.sgu.warcraftgame.Unit;
 import com.sgu.warcraftgame.myattack.Attack;
 import com.sgu.warcraftgame.myexception.UnitNotFoundException;
 
+
 public class Barracks extends Construction {
 
     @Override

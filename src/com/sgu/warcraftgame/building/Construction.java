@@ -3,6 +3,7 @@ package com.sgu.warcraftgame.building;
 import com.sgu.warcraftgame.Unit;
 import com.sgu.warcraftgame.myexception.UnitNotFoundException;
 
+
 public abstract class Construction extends Unit {
     private int hp; //Hit Points
     private int protectionPoints;

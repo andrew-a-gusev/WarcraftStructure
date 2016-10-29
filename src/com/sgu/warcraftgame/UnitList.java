@@ -1,34 +1,40 @@
 package com.sgu.warcraftgame;
 
 import com.sgu.warcraftgame.myattack.Attack;
-import com.sgu.warcraftgame.myattack.MeleeAttack;
-import com.sgu.warcraftgame.myattack.RangeAttack;
+import com.sgu.warcraftgame.myattack.FactoryAttack;
+import com.sgu.warcraftgame.myattack.typeattack.Attackable;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 
-public class UnitList<T> extends ArrayList<T> implements FightingAbility, Movable {
+public class UnitList<T extends Unit> extends ArrayList<T> implements FightingAbility, Movable {
 
     public long getAllHp() {
         long hp = 0;
         for (T p : this) {
-            Unit unit = (Unit) p;
+            Unit unit = p;
             hp += unit.getHp();
         }
         return hp;
 
     }
 
+    private Attack getTypeAttack(Unit unit1, Unit unit2) {
+
+
+        Attackable attackable = new FactoryAttack(unit1).getAttack();
+        return attackable.getAttack(unit1,unit2);
+    }
 
     @Override
     public  void attackUnit(Unit o) {
 
-        for (int i = 0; i < this.size(); i++) {
-            if (this.get(i) instanceof Footman)
-                o.suffer(new MeleeAttack((Unit) this.get(i), o));
-            if (this.get(i) instanceof Archer)
-                o.suffer(new RangeAttack((Unit) this.get(i), o));
-            if (o.getHp() <= 0) break;
+     //   for (int i = 0; i < this.size(); i++) {
+            for (Unit unit: this) {
+                o.suffer(getTypeAttack(unit, o));
+            if (o.getHp() <= 0)
+                break;
         }
 
     }
@@ -41,75 +47,63 @@ public class UnitList<T> extends ArrayList<T> implements FightingAbility, Movabl
             Random random = new Random();
             Unit attacking;
             Unit attacked;
-            if (this.size() == 1) attacking = (Unit) this.get(0);
-            else
-                attacking = (Unit) this.get(random.nextInt(this.size() - 1));
-            if (attacking instanceof Footman) {
-                if (units.size() == 1) attacked = (Unit) units.get(0);
-                else
-                    attacked = (Unit) units.get(random.nextInt(units.size() - 1));
-                attacked.suffer(new MeleeAttack(attacking, attacked));
+            if (this.size() == 1) {
+                attacking =  this.get(0);
             }
-            if (attacking instanceof Archer) {
-                if (units.size() == 1) attacked = (Unit) units.get(0);
-                else
-                    attacked = (Unit) units.get(random.nextInt(units.size() - 1));
-                attacked.suffer(new RangeAttack(attacking, attacked));
+            else {
+                attacking =  this.get(random.nextInt(this.size() - 1));
             }
 
-//logic game #2  all attack of one
-//        for (int i = 0; i < this.size(); i++) {
-//            for (int j = 0; j < units.size(); j++) {
-//                if (this.get(i) instanceof Footman) {
-//                    Unit attacked = (Unit) units.get(i);
-//                    attacked.suffer(new MeleeAttack((Unit) this.get(j), attacked));
-//                }
-//                if (this.get(i) instanceof Archer) {
-//                    Unit attacked = (Unit) units.get(i);
-//                    attacked.suffer(new RangeAttack((Unit) this.get(j), attacked));
-//                }
-//            }
-//
-//        }
+                if (units.size() == 1) {
+                    attacked =  units.get(0);
+                }
+                else {
+                attacked = units.get(random.nextInt(units.size() - 1));
+                }
 
-            for (int i = 0; i < units.size(); ) {
-                attacked = (Unit) units.get(i);
-                if (attacked.getHp() <= 0)
-                    units.remove(i);
-                else i++;
+                attacked.suffer(getTypeAttack(attacking, attacked));
+
+
+
+            Iterator<? extends T> iterator=units.iterator();
+            while (iterator.hasNext()) {
+               if (iterator.next().getHp()<= 0) {
+                   iterator.remove();
+               }
             }
         }
     }
 
     @Override
     public void move(int x, int y) {
-        UnitList<Unit> unit=(UnitList<Unit>)this;
-        for (int i = 0; i < unit.size(); i++) {
-            if (x >  unit.get(i).getX())
-                for (int k = unit.get(i).getX(); k <= x; k++) {
-                    unit.get(i).setX(k);
-                    System.out.println(unit.get(i).getName() + " go to(" + k + "," + unit.get(i).getY() + ")");
+
+        for (int i = 0; i < this.size(); i++) {
+            if (x >  this.get(i).getX())
+                for (int k = this.get(i).getX(); k <= x; k++) {
+                    this.get(i).setX(k);
+                    System.out.println(this.get(i).getName() + " go to(" + k + "," + this.get(i).getY() + ")");
                 }
-            else if (x < unit.get(i).getX())
-                for (int k = unit.get(i).getX(); k >= x; k--) {
-                    unit.get(i).setX(k);
-                    System.out.println(unit.get(i).getName() + " go to(" + k + "," + unit.get(i).getY() + ")");
+            else if (x < this.get(i).getX())
+                for (int k = this.get(i).getX(); k >= x; k--) {
+                    this.get(i).setX(k);
+                    System.out.println(this.get(i).getName() + " go to(" + k + "," + this.get(i).getY() + ")");
 
                 }
 
 
-            if (y > unit.get(i).getY())
-                for (int k = unit.get(i).getY(); k <= y; k++) {
-                    unit.get(i).setY(k);
-                    System.out.println(unit.get(i).getName() + " go to(" + unit.get(i).getX() + "," + k + ")");
+            if (y > this.get(i).getY())
+                for (int k = this.get(i).getY(); k <= y; k++) {
+                    this.get(i).setY(k);
+                    System.out.println(this.get(i).getName() + " go to(" + this.get(i).getX() + "," + k + ")");
                 }
-            else if (y < unit.get(i).getY())
-                for (int k = unit.get(i).getY(); k >= y; k--) {
-                    unit.get(i).setY(k);
-                    System.out.println(unit.get(i).getName() + " go to(" + unit.get(i).getX() + "," + k + ")");
+            else if (y < this.get(i).getY())
+                for (int k = this.get(i).getY(); k >= y; k--) {
+                    this.get(i).setY(k);
+                    System.out.println(this.get(i).getName() + " go to(" + this.get(i).getX() + "," + k + ")");
                 }
         }
     }
+
 
     @Override
     public void suffer(Attack attack) {
