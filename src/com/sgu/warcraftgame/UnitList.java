@@ -9,8 +9,15 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
+/**
+ * С какой целью мы позволяем задавать разные типы шаблона T ?
+ * Почему нельзя сделать UnitList extends ArrayList<Unit> ?
+ */
 public class UnitList<T extends Unit> extends ArrayList<T> implements FightingAbility, Movable {
 
+    /**
+     * какой физический смысл в таком методе ?
+     */
     public long getAllHp() {
         long hp = 0;
         for (T p : this) {
@@ -79,7 +86,13 @@ public class UnitList<T extends Unit> extends ArrayList<T> implements FightingAb
 
     @Override
     public void move(int x, int y) {
-
+        /**
+         * как вариант
+         * foreach(Unit u: units) {
+         *     unit.moveTo(x,y);
+         * }
+         * при этом логика перемещения каждого отдельного юнита реализуется его собственным классом
+         */
         for (int i = 0; i < this.size(); i++) {
             if (x > this.get(i).getX()) {
                 for (int k = this.get(i).getX(); k <= x; k++) {
