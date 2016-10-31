@@ -30,6 +30,11 @@ public abstract class Unit implements FightingAbility, Movable {
     @Override
     public void move(int x, int y) {
 
+        /**
+         * проду рассмотреть вариант пошагового приближения к цели.
+         * таим образом, объект должен помнить куда он собирался прийти и кого там бить
+         * и получил от системы очередной tick() выполнять задуманное.
+         */
         if (x > this.getX()) {
             for (int i = this.getX(); i <= x; i++) {
                 this.setX(i);
@@ -69,10 +74,18 @@ public abstract class Unit implements FightingAbility, Movable {
         return damage;
     }
 
+    /**
+     * лучше getPosition чем getX, getY
+     */
     public int getX() {
         return x;
     }
 
+    /**
+     * Смысл setX, setY вместе с moveTo(x,y) не очевиден
+     * эти методы выводят контроль за поведением класса из кода класса, таким образом поведение сложнее контролировать
+     * если речь о задании начальных координат - лучше делать это в конструкторе
+     */
     public void setX(int x) {
         this.x = x;
     }
@@ -93,6 +106,10 @@ public abstract class Unit implements FightingAbility, Movable {
         return mp;
     }
 
+    /**
+     * Обычно имя сохраняется на всю жизнь - значит должно задаваться в конструкторе
+     * если предусмотрена процедура переименования - то rename()
+     */
     public void setName(String name) {
         this.name = name;
     }
